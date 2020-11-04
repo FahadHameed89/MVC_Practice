@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductInformation.Models
 {
-    [Table("category"]
+    [Table("category")]
 
     public class Category
     {

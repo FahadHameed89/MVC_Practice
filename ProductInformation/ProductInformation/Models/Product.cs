@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductInformation.Models
 {
-    [Table("product"]
+    [Table("product")]
     public class Product
     {
 
@@ -20,6 +20,7 @@ namespace ProductInformation.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
+        // [Column("ProductName", Typename = "varchar(30)"]
         [Column(TypeName = "varchar(40)")]
         [Required]
         public string Name { get; set; }

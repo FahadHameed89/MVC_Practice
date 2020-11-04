@@ -2,3 +2,7 @@
 	"Product": "ID", "Name", "CategoryID" (FK to Category)
 	"Category": "ID", "Name"
 
+Practice 2 - Generate a context called "ProductInfoContext"
+	Foreign Keys and Seed Data are not required.
+	Please collate the string fields.
+
