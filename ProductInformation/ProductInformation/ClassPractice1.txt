@@ -21,5 +21,11 @@ Practice 5 - Create a scaffolded controller with views for the category model.
 	- Select MVC Controller with Views, using Entity Framework
 
 Practice 6 - Create an empty controller for product
-Add an Action for Create and an action for List
-Redirect the Index action to List.
+	- Add an Action for Create and an action for List
+	- Redirect the Index action to List.
+
+Practice 7 - 
+	- Create a view for each of List and Create (For product)
+	- Add a GetProducts() method to the products controller that will retrieve products.
+	- Render a list of all products in the list view
+	- Add both of our views to the navigation. 
