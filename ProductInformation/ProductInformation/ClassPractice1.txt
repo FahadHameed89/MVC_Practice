@@ -1,26 +1,32 @@
-﻿Practice 1 - Generate 2 Models
+﻿Practice 1 
+	- Generate 2 Models
 	"Product": "ID", "Name", "CategoryID" (FK to Category)
 	"Category": "ID", "Name"
 
-Practice 2 - Generate a context called "ProductInfoContext"
-	Foreign Keys and Seed Data are not required.
-	Please collate the string fields.
+Practice 2 
+	- Generate a context called "ProductInfoContext"
+	- Foreign Keys and Seed Data are not required.
+	- Please collate the string fields.
 
-Practice 3 - Implement the foreign key between product to category in the models and the context file. 
+Practice 3 
+	- Implement the foreign key between product to category in the models and the context file. 
 
-Practice 4 - Create a migration called "InitialMigration". Push it to the Database and confirm it in phpMyAdmin. Add Seed Data for both tables. Two categories, (2 categories, 5 products total minimum). Add a second (and potentially 3rd) migration and push those as well. 
+Practice 4 
+	- Create a migration called "InitialMigration". Push it to the Database and confirm it in phpMyAdmin. Add Seed Data for both tables. Two categories, (2 categories, 5 products total minimum). Add a second (and potentially 3rd) migration and push those as well. 
 	- Run "dotnet ef migrations add InitialMigration"
 	- Run "dotnet ef database update"
 	- Make updates, add seed data
 	- Run "dotnet ef migrations add SeedData"
 	- Run "dotnet ef database update"
 
-Practice 5 - Create a scaffolded controller with views for the category model.
+Practice 5 
+	- Create a scaffolded controller with views for the category model.
 	- Right click on controllers
 	- Select Add Controller
 	- Select MVC Controller with Views, using Entity Framework
 
-Practice 6 - Create an empty controller for product
+Practice 6 
+	- Create an empty controller for product
 	- Add an Action for Create and an action for List
 	- Redirect the Index action to List.
 
@@ -29,3 +35,14 @@ Practice 7 -
 	- Add a GetProducts() method to the products controller that will retrieve products.
 	- Render a list of all products in the list view
 	- Add both of our views to the navigation. 
+
+Practice 8 -
+	- Update the list view to only render the table if there are products (count > 0)
+	- Update the GetProducts method to either explicitly or eagerly load the category data.
+	- Update hte list view to show the category name instead of the ID.
+	- Optional: Add CSS to make the table. 
+
+Practice 9
+	- Fill in the Create view with a form.
+	- Add a CreateProduct method to the Product Controller
+	- Optional: Make the Category field a dropdown that is populated from a GetCategories method in CategoryController (You need to write this method)

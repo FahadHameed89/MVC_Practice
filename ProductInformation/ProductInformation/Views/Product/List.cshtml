@@ -5,20 +5,29 @@
 
 <h1>List</h1>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Category ID</th>
-        <th>Product Name</th>
-    </tr>
-    @foreach (Product product in ViewBag.Products)
-    {
-<tr>
-    <td>@(product.ID)</td>
-    <td>@(product.CategoryID)</td>
-    <td>@(product.Name)</td>
+@if (ViewBag.Products != null && ViewBag.Products.Count > 0)
+{
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Category ID</th>
+            <th>Product Name</th>
+        </tr>
+        @foreach (Product product in ViewBag.Products)
+        {
+            <tr>
+                <td>@(product.ID)</td>
+                <td>@(product.CategoryID)</td>
+                <td>@(product.Name)</td>
 
-</tr>
-    }
+            </tr>
+        }
 
-</table>
+    </table>
+}
+else
+{
+    <p>No Products Exist!</p>
+
+}
+
