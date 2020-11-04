@@ -7,3 +7,6 @@ Practice 2 - Generate a context called "ProductInfoContext"
 	Please collate the string fields.
 
 Practice 3 - Implement the foreign key between product to category in the models and the context file. 
+
+Practice 4 - Create a migration called "InitialMigration". Push it to the Database and confirm it in phpMyAdmin. Add Seed Data for both tables. Two categories, (2 categories, 5 products total minimum). Add a second (and potentially 3rd) migration and push those as well. 
+
