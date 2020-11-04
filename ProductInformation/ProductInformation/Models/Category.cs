@@ -11,6 +11,11 @@ namespace ProductInformation.Models
 
     public class Category
     {
+        public Category()
+        {
+            Products = new HashSet<Product>();
+        }
+
         [Key]
         [Column(TypeName = "int(10)")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,5 +26,7 @@ namespace ProductInformation.Models
         public string Name { get; set; }
 
 
+        [InverseProperty(nameof(Models.Product.Category))]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

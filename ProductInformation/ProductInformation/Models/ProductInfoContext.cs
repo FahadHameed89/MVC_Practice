@@ -29,11 +29,34 @@ namespace ProductInformation.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>(entity =>
+
+            modelBuilder.Entity<Category>(entity =>
             {
+
                 entity.Property(e => e.Name)
                 .HasCharSet("utf8mb4")
                 .HasCollation("utf8mb4_general_ci");
+
+
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+
+                entity.Property(e => e.Name)
+                .HasCharSet("utf8mb4")
+                .HasCollation("utf8mb4_general_ci");
+
+                string keytoCategory = "FK_" + nameof(Product) + "_" + nameof(Category);
+
+                entity.HasIndex(e => e.CategoryID)
+                .HasName(keytoCategory);
+
+                entity.HasOne(thisEntity => thisEntity.Category)
+                .WithMany(parent => parent.Products)
+                .HasForeignKey(thisEntity => thisEntity.CategoryID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName(keytoCategory);
 
                 entity.HasData(
                    new Product()
@@ -55,15 +78,7 @@ namespace ProductInformation.Models
 
 
             });
-            modelBuilder.Entity<Category>(entity =>
-            {
 
-                entity.Property(e => e.Name)
-                .HasCharSet("utf8mb4")
-                .HasCollation("utf8mb4_general_ci");
-
-
-            });
         }
     }
 }

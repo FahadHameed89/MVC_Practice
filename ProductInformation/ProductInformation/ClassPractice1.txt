@@ -6,3 +6,4 @@ Practice 2 - Generate a context called "ProductInfoContext"
 	Foreign Keys and Seed Data are not required.
 	Please collate the string fields.
 
+Practice 3 - Implement the foreign key between product to category in the models and the context file. 
