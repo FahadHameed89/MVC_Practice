@@ -1,0 +1,44 @@
+﻿General notes; 
+- MVC has internal routing that will point to endpoints based on the URL that is requested from the server. 
+	- For example: By Default, if we requests (~ = root of the server) ~/Home/Privacy, it will look for the controller associated with the name "Home" (HomeController) and then the endpoint (in this case a View action) associated with the name Privacy
+	- The same routing applies to API, but will be discussed next week. 
+	- The routing settings are defined in Startup.cs
+	- Most MVCs since the inception of patterns popularized of the big ones like Ruby on Rails rely—all or in part—on naming and folder structure convention. They often have ways to override... but especially in a team environment you should never disregard convention of the tools you're using so other people (and yourself down the road) will know where to look for everything.
+	- Models are often classes representing what you think of as "Entities" in your database planning. They represent data, and in most implementations, models have an "ORM" implementation.
+	- Controller does the heavy lifting... it might say:
+		1) Hey Models, what does a Product look like?
+		2) Grabs a list of Products and formats them as Product objects (like our model has!)
+		3) Okay, we have the data! Let's call our View now to display these.
+	- ^Separation of concerns. Each of M, V, and C have their own jobs. Controllers end up talking to everything and deciding what is going to happen when a user makes a request to the server (accesses a certain URL or webpage.)
+
+GIT REMOTES
+---
+git remote add origin https://your-git-url.git
+
+---
+git: the CLI program you are running.
+
+remote: the git command you are running.
+
+add: you are adding a new remote (external git that you can pull from, push to, etc.)
+
+origin: this can be any name.. think of it like a variable, it represents the URL you are going to set.
+
+It basically ends up being something like...
+origin = https://your-git-url.git
+(whatever URL you put in)
+
+
+Project Structure:
+- wwwroot folder: Contains all of the static client-side files associated with delivery. Things like CSS and JS. Any changes to styles or scripts will typically be done here. (with a few exceptions)
+- Controllers - Responsible for the manipulation of data as well as directing requrests/queries to the proper endpoints. This includes both the API and view endpoints (which will be discussed next week)
+- Models - Models provide structure to your data. The main models will be the ones that mirror your database tables, however other models can be added for transferring data, etc. 
+- Views - Views represent dynamic HTML pages that are modified by the C# server runtime (similar to PHP). 
+- appsettings.json - A file to store some constants for the application, as well as some debug and build settings.
+- Program.cs contains the entry pointfor the program (just like Console applications) Everything gets called through the stack from there. 
+- Startup.cs: Contains some initialization methods for the application, and is also where you register your database context as a service. 
+
+
+View Notes:
+- The folder structure to the view for a given action should be ~/Controller/Action
+
