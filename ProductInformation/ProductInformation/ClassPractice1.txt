@@ -45,4 +45,4 @@ Practice 8 -
 Practice 9
 	- Fill in the Create view with a form.
 	- Add a CreateProduct method to the Product Controller
-	- Optional: Make the Category field a dropdown that is populated from a GetCategories method in CategoryController (You need to write this method)
+	- Optional: Make the Category field a dropdown that is populated from a GetCategories method in CategoryController (You need to write this method).
