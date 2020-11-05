@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductInformation.Models
 {
-    [Table("category")]
-
+    [Table("Category")]
     public class Category
     {
         public Category()
@@ -21,10 +20,9 @@ namespace ProductInformation.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        [Column(TypeName = "varchar(40)")]
+        [Column(TypeName = "varchar(30)")]
         [Required]
         public string Name { get; set; }
-
 
         [InverseProperty(nameof(Models.Product.Category))]
         public virtual ICollection<Product> Products { get; set; }

@@ -8,81 +8,55 @@ namespace ProductInformation.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "category",
+                name: "Category",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int(10)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(40)", nullable: false)
+                    Name = table.Column<string>(type: "varchar(30)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                         .Annotation("MySql:Collation", "utf8mb4_general_ci")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_category", x => x.ID);
+                    table.PrimaryKey("PK_Category", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
-                name: "product",
+                name: "Product",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int(10)", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(40)", nullable: false)
+                    Name = table.Column<string>(type: "varchar(30)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                         .Annotation("MySql:Collation", "utf8mb4_general_ci"),
                     CategoryID = table.Column<int>(type: "int(10)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_product", x => x.ID);
+                    table.PrimaryKey("PK_Product", x => x.ID);
                     table.ForeignKey(
                         name: "FK_Product_Category",
                         column: x => x.CategoryID,
-                        principalTable: "category",
+                        principalTable: "Category",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "category",
-                columns: new[] { "ID", "Name" },
-                values: new object[,]
-                {
-                    { -1, "Weapons" },
-                    { -2, "Armor" },
-                    { -3, "Materials" },
-                    { -4, "Consumables" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "product",
-                columns: new[] { "ID", "CategoryID", "Name" },
-                values: new object[] { -1, -1, "Test" });
-
-            migrationBuilder.InsertData(
-                table: "product",
-                columns: new[] { "ID", "CategoryID", "Name" },
-                values: new object[] { -2, -2, "Chocolate" });
-
-            migrationBuilder.InsertData(
-                table: "product",
-                columns: new[] { "ID", "CategoryID", "Name" },
-                values: new object[] { -3, -3, "Beskar" });
-
             migrationBuilder.CreateIndex(
                 name: "FK_Product_Category",
-                table: "product",
+                table: "Product",
                 column: "CategoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "product");
+                name: "Product");
 
             migrationBuilder.DropTable(
-                name: "category");
+                name: "Category");
         }
     }
 }

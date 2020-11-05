@@ -8,8 +8,8 @@ using ProductInformation.Models;
 namespace ProductInformation.Migrations
 {
     [DbContext(typeof(ProductInfoContext))]
-    [Migration("20201104180804_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20201105171442_ThirdMigration")]
+    partial class ThirdMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,34 +26,24 @@ namespace ProductInformation.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(40)")
+                        .HasColumnType("varchar(30)")
                         .HasAnnotation("MySql:CharSet", "utf8mb4")
                         .HasAnnotation("MySql:Collation", "utf8mb4_general_ci");
 
                     b.HasKey("ID");
 
-                    b.ToTable("category");
+                    b.ToTable("Category");
 
                     b.HasData(
                         new
                         {
                             ID = -1,
-                            Name = "Weapons"
+                            Name = "Kitchen"
                         },
                         new
                         {
                             ID = -2,
-                            Name = "Armor"
-                        },
-                        new
-                        {
-                            ID = -3,
-                            Name = "Materials"
-                        },
-                        new
-                        {
-                            ID = -4,
-                            Name = "Consumables"
+                            Name = "Garage"
                         });
                 });
 
@@ -68,7 +58,7 @@ namespace ProductInformation.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("varchar(40)")
+                        .HasColumnType("varchar(30)")
                         .HasAnnotation("MySql:CharSet", "utf8mb4")
                         .HasAnnotation("MySql:Collation", "utf8mb4_general_ci");
 
@@ -77,26 +67,38 @@ namespace ProductInformation.Migrations
                     b.HasIndex("CategoryID")
                         .HasName("FK_Product_Category");
 
-                    b.ToTable("product");
+                    b.ToTable("Product");
 
                     b.HasData(
                         new
                         {
                             ID = -1,
                             CategoryID = -1,
-                            Name = "Test"
+                            Name = "Mixer"
                         },
                         new
                         {
                             ID = -2,
-                            CategoryID = -2,
-                            Name = "Chocolate"
+                            CategoryID = -1,
+                            Name = "Rice Cooker"
                         },
                         new
                         {
                             ID = -3,
-                            CategoryID = -3,
-                            Name = "Beskar"
+                            CategoryID = -2,
+                            Name = "Wrench Set"
+                        },
+                        new
+                        {
+                            ID = -4,
+                            CategoryID = -2,
+                            Name = "Floor Jack"
+                        },
+                        new
+                        {
+                            ID = -5,
+                            CategoryID = -2,
+                            Name = "Screwdriver Set"
                         });
                 });
 

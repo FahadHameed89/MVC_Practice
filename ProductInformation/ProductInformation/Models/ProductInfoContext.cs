@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductInformation.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace ProductInformation.Models
 {
     public class ProductInfoContext : DbContext
     {
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Category> Categories{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,7 +19,7 @@ namespace ProductInformation.Models
                     "server=localhost;" +
                     "port=3306;" +
                     "user=root;" +
-                    "database=mvc_practice;";
+                    "database=mvc_productinfo;";
 
                 string version = "10.4.14-MariaDB";
 
@@ -29,87 +29,78 @@ namespace ProductInformation.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Category>(entity =>
             {
-
                 entity.Property(e => e.Name)
                 .HasCharSet("utf8mb4")
                 .HasCollation("utf8mb4_general_ci");
 
                 entity.HasData(
-                   new Category()
-                   {
-                       ID = -1,
-                       Name = "Weapons"
-                   },
-                   new Category()
-                   {
-                       ID = -2,
-                       Name = "Armor"
-                   },
-                   new Category()
-                   {
-                       ID = -3,
-                       Name = "Materials"
-                   },
                     new Category()
                     {
-                        ID = -4,
-                        Name = "Consumables"
+                        ID = -1,
+                        Name = "Kitchen"
+                    },
+                    new Category()
+                    {
+                        ID = -2,
+                        Name = "Garage"
                     }
                 );
             });
-
             modelBuilder.Entity<Product>(entity =>
             {
-
                 entity.Property(e => e.Name)
                 .HasCharSet("utf8mb4")
                 .HasCollation("utf8mb4_general_ci");
 
-                string keytoCategory = "FK_" + nameof(Product) + "_" + nameof(Category);
+                string keyToCategory = "FK_" + nameof(Product) +
+                    "_" + nameof(Category);
+                // FK_Product_Category
 
+                
                 entity.HasIndex(e => e.CategoryID)
-                .HasName(keytoCategory);
+                .HasName(keyToCategory);
 
                 entity.HasOne(thisEntity => thisEntity.Category)
                 .WithMany(parent => parent.Products)
                 .HasForeignKey(thisEntity => thisEntity.CategoryID)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName(keytoCategory);
+                .HasConstraintName(keyToCategory);
 
                 entity.HasData(
-                   new Product()
-                   {
-                       ID = -1,
-                       Name = "Test",
-                       CategoryID = -1
-                   },
-                   new Product()
-                   {
-                       ID = -2,
-                       Name = "Chocolate",
-                       CategoryID = -2
-
-                   },
-                   new Product()
-                   {
-                       ID = -3,
-                       Name = "Beskar",
-                       CategoryID = -3
-                   },
+                    new Product()
+                    {
+                        ID = -1,
+                        CategoryID = -1,
+                        Name = "Mixer"
+                    },
+                    new Product()
+                    {
+                        ID = -2,
+                        CategoryID = -1,
+                        Name = "Rice Cooker"
+                    },
+                    new Product()
+                    {
+                        ID = -3,
+                        CategoryID = -2,
+                        Name = "Wrench Set"
+                    },
                     new Product()
                     {
                         ID = -4,
-                        Name = "Staff of Light",
-                        CategoryID = -3
+                        CategoryID = -2,
+                        Name = "Floor Jack"
+                    },
+                    new Product()
+                    {
+                        ID = -5,
+                        CategoryID = -2,
+                        Name = "Screwdriver Set"
                     }
-               );
-
-
+                );
             });
-
         }
     }
 }

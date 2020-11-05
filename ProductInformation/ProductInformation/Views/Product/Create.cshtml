@@ -1,42 +1,43 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
-
 @if (ViewBag.Message != null)
 {
-    <p class="alert-@(ViewBag.Error != null ? "danger" : "success")">@ViewBag.Message</p>
-
+    <p class="alert-@(ViewBag.Error != null ? "danger" : "success")">@(ViewBag.Message)</p>
+    if(ViewBag.Error != null)
+    {
+        <ul>
+            @foreach(Exception e in ViewBag.Exception.ValidationExceptions)
+            {
+                <li class="alert-danger">@(e.Message)</li>
+            }
+        </ul>
+    }
 }
 
-
-<form action="/Product/Create" method="post">
+<form action="/Product/Create" method="get">
     <div>
-        <label for="categoryID">Product Category</label>
-        <input type="text" name="categoryID" id="category" value="" />
+        <label for="categoryID">Product Category:</label>
         <select id="categoryID" name="categoryID">
             @foreach (Category category in ViewBag.Categories)
             {
                 @if (category.ID.ToString() == ViewBag.CategoryID)
                 {
-                    <option value="@(category.ID)" selected">@(category.Name)</option>
+                    <option value="@(category.ID)" selected>@(category.Name)</option>
                 }
                 else
                 {
                     <option value="@(category.ID)">@(category.Name)</option>
-
                 }
             }
         </select>
-
     </div>
     <div>
         <label for="name">Product Name:</label>
-        <input type="text" name="name" id="name" value="" />
-
+        <input type="text" id="name" name="name" value="@(ViewBag.Name)" />
     </div>
     <input type="submit" value="Go" />
 </form>
-
-

@@ -7,27 +7,23 @@
 
 @if (ViewBag.Products != null && ViewBag.Products.Count > 0)
 {
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Product Name</th>
+    </tr>
+    @foreach (Product product in ViewBag.Products)
+    {
         <tr>
-            <th>ID</th>
-            <th>Category ID</th>
-            <th>Product Name</th>
+            <td>@(product.ID)</td>
+            <td>@(product.Category.Name)</td>
+            <td>@(product.Name)</td>
         </tr>
-        @foreach (Product product in ViewBag.Products)
-        {
-            <tr>
-                <td>@(product.ID)</td>
-                <td>@(product.CategoryID)</td>
-                <td>@(product.Name)</td>
-
-            </tr>
-        }
-
-    </table>
+    }
+</table>
 }
 else
 {
-    <p>No Products Exist!</p>
-
+    <p>No product data was found.</p>
 }
-

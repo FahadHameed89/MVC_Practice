@@ -1,0 +1,52 @@
+﻿Practice 1: 
+Generate two models: 
+	"Product": "ID", "Name", "CategoryID" (FK to Category)
+	"Category": "ID", "Name"
+
+Practice 2:
+Generate a context called "ProductInfoContext"
+	Example: https://github.com/TECHCareers-by-Manpower/4.2-MVC/blob/master/FirstASP/Models/PersonContext.cs
+	Foreign keys and seed data are not required.
+	Please do, however, collate the string fields.
+
+Practice 3:
+Implement the foriegn key between product to category in the models and the context file.
+	Example: https://github.com/TECHCareers-by-Manpower/4.2-MVC/tree/master/FirstASP/Models
+
+Practice 4: 
+Create a migration called "InitialMigration". Push it to the database. Confirm it in PHPMyAdmin. Add seed data for both tables (2 categories and 5 products total minimum). Add a second (and potentially third) migration, and push those as well.
+	-Run "dotnet ef migrations add InitialMigration"
+	-Run "dotnet ef database update"
+	-Make changes to context (add entity.HasData) and don't forget to save
+	-Run "dotnet ef migrations add SeedData"
+	-Run "dotnet ef database update"
+
+Practice 5:
+Create a scaffolded controller with views for the Category model.
+	-Right click on Controllers.
+	-Select add Controller.
+	-Select MVC Controller with Views, Using Entity Framework.
+	-Fill out the options (see Library Day 2 spec for screenshots).
+	-Hit OK.
+
+Practice 6:
+Create an empty controller for Product.
+Add a Action for Create and an action for List.
+Redirect the Index action to List.
+
+Practice 7:
+Create a view for each of List and Create (Product).
+Add a GetProducts() method to the ProductController that will retrieve products.
+Render a list of all products in the List view.
+Add both of our views to the navigation.
+
+Practice 8:
+Update the List view to only render the table if there are products (count > 0).
+Update the GetProducts method to either explicitly or eagerly load the category data.
+Update the List view to show the category name instead of the ID.
+Optional: Make the table look pretty.
+
+Practice 9:
+Fill in the Create view with a form.
+Add a CreateProduct method to the Product Controller.
+Optional: Make the Category field a dropdown that is populated from a GetCategories method in CategoryController (you'll have to write that method).

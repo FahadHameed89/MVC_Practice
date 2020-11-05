@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace ProductInformation.Models
 {
-    [Table("product")]
+    [Table("Product")]
     public class Product
     {
-
-        public Product()
-        {
-            // FK Category 
-        }
         [Key]
         [Column(TypeName = "int(10)")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
-        // [Column("ProductName", Typename = "varchar(30)"]
-        [Column(TypeName = "varchar(40)")]
+        // [Column("ProductName", TypeName = "varchar(30)")]
+        [Column(TypeName = "varchar(30)")]
         [Required]
         public string Name { get; set; }
 
@@ -31,6 +26,5 @@ namespace ProductInformation.Models
         [ForeignKey(nameof(CategoryID))]
         [InverseProperty(nameof(Models.Category.Products))]
         public virtual Category Category { get; set; }
-
     }
 }
