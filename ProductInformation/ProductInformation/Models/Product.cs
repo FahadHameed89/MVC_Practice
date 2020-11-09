@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ProductInformation.Models
@@ -23,6 +24,7 @@ namespace ProductInformation.Models
         [Column(TypeName = "int(10)")]
         public int CategoryID { get; set; }
 
+        [JsonIgnore]
         [ForeignKey(nameof(CategoryID))]
         [InverseProperty(nameof(Models.Category.Products))]
         public virtual Category Category { get; set; }
