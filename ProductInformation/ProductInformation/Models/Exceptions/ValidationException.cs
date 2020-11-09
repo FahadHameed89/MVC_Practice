@@ -33,7 +33,7 @@ namespace ProductInformation.Models.Exceptions
         public ValidationException(string message) : base("Please view ValidationExceptions for details.")
         {
             ValidationExceptions = new List<Exception>()
-            {
+            { 
                 new Exception(message)
             };
         }

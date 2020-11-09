@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using ProductInformation.Models;
 using ProductInformation.Models.Exceptions;
 
@@ -20,7 +21,7 @@ namespace ProductInformation.Controllers
         public IActionResult Create(string categoryID, string name)
         {
             // If you're using GET submission, you can use Request.Query.Count to check for query string parameters.
-            if (Request.Query.Count > 0 )
+            if (Request.Query.Count > 0)
             {
                 try
                 {
@@ -44,9 +45,18 @@ namespace ProductInformation.Controllers
             return View();
         }
 
-        public IActionResult List()
+        public IActionResult List(string filter)
         {
-            ViewBag.Products = GetProducts();
+            if (filter == "kitchen")
+            {
+                ViewBag.Products = GetKitchenProducts();
+                ViewBag.Filter = true;
+            }
+            else
+            {
+                ViewBag.Products = GetProducts();
+                ViewBag.Filter = false;
+            }
             return View();
         }
 
@@ -59,6 +69,16 @@ namespace ProductInformation.Controllers
             using (ProductInfoContext context = new ProductInfoContext())
             {
                 results = context.Products.Include(x => x.Category).ToList();
+            }
+            return results;
+        }
+
+        public List<Product> GetKitchenProducts()
+        {
+            List<Product> results;
+            using (ProductInfoContext context = new ProductInfoContext())
+            {
+                results = context.Products.Include(x => x.Category).Where(x => x.Category.Name == "Kitchen").ToList();
             }
             return results;
         }
@@ -76,7 +96,7 @@ namespace ProductInformation.Controllers
             // Check for individual validation cases and throw an exception if they fail.
             // I'll show you how to bundle up multiple simultaneous exceptions tomorrow.
 
-
+        
             using (ProductInfoContext context = new ProductInfoContext())
             {
 
@@ -135,18 +155,19 @@ namespace ProductInformation.Controllers
                             // Name too long
                             // Common validation point (3).
                             exception.ValidationExceptions.Add(new Exception("The Maximum Length of a Name is 30 Characters"));
-                        }   // Solution for In-Class Practice
+                        }
                         else
                         {
                             if (name.ToUpper() == "PAPER CUPS" && parsedCategoryID == context.Categories.Where(x => x.Name == "Kitchen").Single().ID)
                             {
-                                exception.ValidationExceptions.Add(new Exception("Only Glass Glasses are allowed in the kitchen...Try the Garage!"));
+                                exception.ValidationExceptions.Add(new Exception("Only Glass Glasses Allowed Here"));
                             }
                         }
                     }
                 }
 
 
+                
 
 
                 if (exception.ValidationExceptions.Count > 0)
